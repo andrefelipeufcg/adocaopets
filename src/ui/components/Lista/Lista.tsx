@@ -5,6 +5,7 @@ import { Descricao, Foto, Informacoes, ItemLista, ListaStyled, Nome } from './Li
 
 interface ListaProps {
     pets: Pet[]; // lista de pets
+    onSelect: (pet : Pet) => void;
 }
 
 export default function Lista(props: ListaProps){
@@ -17,7 +18,13 @@ export default function Lista(props: ListaProps){
                 <Informacoes>
                     <Nome>{pet.nome}</Nome>
                     <Descricao>{TextService.limitarTexto(pet.historia, tamanhoMaximoTexto)}</Descricao>
-                    <Button variant={'contained'} fullWidth>Adotar {pet.nome}</Button>
+                    <Button 
+                        variant={'contained'} 
+                        fullWidth
+                        onClick={ () => props.onSelect(pet) }
+                        >
+                            Adotar {pet.nome}
+                    </Button>
                 </Informacoes>
             </ItemLista>
             ))}
